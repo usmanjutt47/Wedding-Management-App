@@ -7,7 +7,7 @@ export default function RootLayout() {
 
   return (
     <api.Provider client={client}>
-      <Stack />
+      <Stack screenOptions={{ headerShown: false }} />
     </api.Provider>
   );
 }
