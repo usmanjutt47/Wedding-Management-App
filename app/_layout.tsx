@@ -1,19 +1,13 @@
-import { Stack, useRouter } from "expo-router";
-
-import { useEffect } from "react";
+import { Stack } from "expo-router";
+import { api } from "@/utils/api";
+import { useState } from "react";
 
 export default function RootLayout() {
-  const router = useRouter();
-  useEffect(() => {
-    router.push("/all-chats");
-  }, []);
+  const [client] = useState(() => api.createClient());
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(auth)/index" />
-      <Stack.Screen name="(auth)/register/index" />
-      <Stack.Screen name="(auth)/forgot-password/index" />
-      <Stack.Screen name="(chat)/all-chats/index" />
-    </Stack>
+    <api.Provider client={client}>
+      <Stack />
+    </api.Provider>
   );
 }
